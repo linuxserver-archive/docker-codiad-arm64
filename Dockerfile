@@ -1,20 +1,20 @@
-FROM lsiobase/alpine.nginx.arm64
-MAINTAINER sparklyballs
+FROM lsiobase/alpine.nginx.arm64:3.7
 
 # set version label
 ARG BUILD_DATE
 ARG VERSION
 LABEL build_version="Linuxserver.io version:- ${VERSION} Build-date:- ${BUILD_DATE}"
+LABEL maintainer="sparklyballs"
 
-# install packages
 RUN \
-apk add --no-cache \
+ echo "**** install package ****" && \
+ apk add --no-cache \
 	git \
 	expect \
 	php7-ldap \
 	php7-zip
 
-# copy local files
+# copy local files
 COPY root/ /
 
 # ports and volumes
